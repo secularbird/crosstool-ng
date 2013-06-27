@@ -127,8 +127,15 @@ do_libc_backend() {
                                           "usr/lib/${multi_dir}"    \
                                           "${multi_dir}"            \
                                           "${multi_dir}/usr"
-                CT_DoExecLog ALL ln -sf "../lib/${multi_dir}" "${multi_dir}/lib"
-                CT_DoExecLog ALL ln -sf "../../usr/lib/${multi_dir}" "${multi_dir}/usr/lib"
+                slash_count=${multi_dir//[^\/]}
+                dir_depth=${#slash_count}
+                pre_dir=
+                for i in `seq ${dir_depth}`
+                do
+                    pre_dir="../"${pre_dir}
+                done
+                CT_DoExecLog ALL ln -sf ${pre_dir}"../lib/${multi_dir}" "${multi_dir}/lib"
+                CT_DoExecLog ALL ln -sf ${pre_dir}"../../usr/lib/${multi_dir}" "${multi_dir}/usr/lib"
                 CT_Popd
             fi
             libc_headers=
