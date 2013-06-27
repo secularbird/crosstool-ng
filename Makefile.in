@@ -328,6 +328,7 @@ install-lib-main: $(DESTDIR)$(libdir) $(patsubst %,install-lib-%,$(LIB_SUB_DIR))
 install-lib-samples: $(DESTDIR)$(libdir) install-lib-main
 	@echo "  INSTDIR 'samples/'"
 	@for samp_dir in samples/*/; do                                         \
+	     if [ -d $${samp_dir} ] ; then					\
 	     mkdir -p "$(DESTDIR)$(libdir)/$${samp_dir}";                       \
 	     $(sed) -r -e 's:\$$\{CT_TOP_DIR\}:\$$\{CT_LIB_DIR\}:;'             \
 	               -e 's:^(CT_WORK_DIR)=.*:\1="\$${CT_TOP_DIR}/.build":;'   \
@@ -340,6 +341,7 @@ install-lib-samples: $(DESTDIR)$(libdir) install-lib-main
 	         $(install) -m 644 "$${libc_cfg}"                               \
 	                           "$(DESTDIR)$(libdir)/$${samp_dir}";          \
 	     done;                                                              \
+	     fi;									\
 	 done
 	@$(install) -m 644 samples/samples.mk "$(DESTDIR)$(libdir)/samples/samples.mk"
 
