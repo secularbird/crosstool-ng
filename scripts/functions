@@ -573,6 +573,7 @@ CT_DoGetFile() {
     # timeout.
     # For curl, no good progress indicator is available. So, be silent.
     if CT_DoExecLog ALL wget --passive-ftp --tries=3 -nc    \
+                             --no-check-certificate         \
                              --progress=dot:binary          \
                              -T ${CT_CONNECT_TIMEOUT}       \
                              -O "${tmp}"                    \
