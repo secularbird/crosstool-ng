@@ -95,6 +95,10 @@ AC_ARG_WITH([install],
                    [Specify the full PATH to a BSD-compatible install]),
     [INSTALL=$withval])
 AC_PROG_INSTALL
+AC_ARG_WITH([grep],
+    AS_HELP_STRING([--with-grep=PATH],
+                   [Specify the full PATH to GNU grep]),
+    [GREP=$withval])
 AC_PROG_GREP
 AC_PROG_EGREP
 AS_IF(
