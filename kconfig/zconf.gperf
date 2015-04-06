@@ -5,6 +5,7 @@
 %compare-strncmp
 %enum
 %pic
+%includes
 %struct-type
 
 struct kconf_id;
