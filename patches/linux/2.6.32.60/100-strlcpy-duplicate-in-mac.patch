@@ -1,0 +1,12 @@
+--- linux-2.6.32.60/scripts/unifdef.c	2012-10-08 05:41:24.000000000 +0800
++++ linux-2.6.32.60/scripts/unifdef.c	2015-04-06 14:32:01.000000000 +0800
+@@ -72,7 +72,9 @@
+ #include <string.h>
+ #include <unistd.h>
+
++#ifndef strlcpy
+ size_t strlcpy(char *dst, const char *src, size_t siz);
++#endif
+
+ /* types of input lines: */
+ typedef enum {
